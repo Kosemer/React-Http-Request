@@ -6,6 +6,7 @@ import "./App.css";
 function App() {
 
 const [movies, setMovies] = useState([]);
+const [isLoading, setIsLoading] = useState(false);
 
   const fetchMoviesHandler = () => {
     fetch("https://swapi.dev/api/films")
