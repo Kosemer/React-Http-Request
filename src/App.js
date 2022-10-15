@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-
+import AddMovie from './components/AddMovie'
 import MoviesList from "./components/MoviesList";
 import "./App.css";
 
@@ -12,21 +12,35 @@ const [error, setError] = useState(null);
   const fetchMoviesHandler = useCallback( async () => {
     setIsLoading(true)
     try{
-    const response = await fetch("https://swapi.dev/api/films")
+    const response = await fetch("https://react-292a0-default-rtdb.firebaseio.com/movies.json")
 
     if(!response.ok){
       throw new Error('Something went wrong!')
     }
+
     const data = await response.json();
-        const transformedMovies = data.results.map(movieData => {
+
+    const loadedMovies = [];
+
+    for(const key in data){
+      loadedMovies.push({
+        id: key,
+        title: data[key].title,
+        releaseDate: data[key].releaseDate,
+        openingText: data[key].openingText
+      })
+    }
+
+  
+        /*const transformedMovies = data.results.map(movieData => {
           return {
             id: movieData.episode_id,
             title: movieData.title,
             openingText: movieData.opening_crawl,
             releaseDate: movieData.release_date
           }
-        })
-        setMovies(transformedMovies)
+        })*/
+        setMovies(loadedMovies)
         setIsLoading(false)
       }
       catch (error) {
@@ -34,12 +48,22 @@ const [error, setError] = useState(null);
       }
   }, []);
 
+  const addMovieHandler = (movie) => {
+    fetch('https://react-292a0-default-rtdb.firebaseio.com/movies.json', {
+      method: 'POST',
+      body: JSON.stringify(movie)
+    })
+  }
+
   useEffect(() => {
     fetchMoviesHandler()
   }, [fetchMoviesHandler])
 
   return (
     <React.Fragment>
+      <section>
+        <AddMovie onAddMovie={addMovieHandler}></AddMovie>
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
