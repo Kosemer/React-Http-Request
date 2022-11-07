@@ -1,4 +1,6 @@
-# React-Http-Request![image](https://user-images.githubusercontent.com/82768146/196006748-f8478302-7ae4-4ac6-a0fa-ac48c57b6832.JPG)
+<h1 align="center">React-Http-Request</h1>
+
+![image](https://user-images.githubusercontent.com/82768146/196006748-f8478302-7ae4-4ac6-a0fa-ac48c57b6832.JPG)
 ![image2](https://user-images.githubusercontent.com/82768146/196006750-03685672-693e-4436-bd05-2b82edace2d7.JPG)
 
 ![image4](https://user-images.githubusercontent.com/82768146/196006942-02498d28-2164-466a-854a-2233cf9cba93.JPG)
